@@ -32,18 +32,21 @@ public class Game {
         while (true)
         {
             int[] move = this.inputMove();
-            calculateNextPosition(move);
+            int[] snakeTile = this.snake.getHeadPosition();
+
+            this.map.clearTile(snakeTile);
+            calculateNextPosition(move, snakeTile);
             this.map.updateTilesWithSnake(this.snake);
+
             displayMap();
         }
     }
 
-    private void calculateNextPosition(int[] move)
+    private void calculateNextPosition(int[] move, int[] snakeTile)
     {
-        int[] snakeTile = this.snake.getPosition();
         int move_v = move[0] + snakeTile[0];
         int move_h = move[1] + snakeTile[1];
-        setSnakePosition(new int[]{move_v, move_h});
+        this.setSnakePosition(new int[]{move_v, move_h});
     }
 
     private void displayMap()
@@ -66,7 +69,7 @@ public class Game {
 
     private void spawnPoint()
     {
-        int[] snake_pos = this.snake.getPosition();
+        int[] snake_pos = this.snake.getHeadPosition();
         int v, h;
         do
         {
@@ -79,7 +82,7 @@ public class Game {
 
     private void setSnakePosition(int[] position)
     {
-        snake.setPosition(position);
+        snake.setHeadPosition(position);
     }
 
     private void setPointPosition(int[] position)

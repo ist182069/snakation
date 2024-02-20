@@ -2,20 +2,20 @@ package jbras.snakation.core;
 
 public class Snake {
 
-    int[] position;
+    int[] head_position;
     int size;
     public Snake(int size)
     {
         this.size = size;
     }
 
-    public int[] getPosition()
+    public int[] getHeadPosition()
     {
-        return this.position;
+        return this.head_position;
     }
 
-    public void setPosition(int[] position)
+    public void setHeadPosition(int[] position)
     {
-        this.position = position;
+        this.head_position = position;
     }
 }
