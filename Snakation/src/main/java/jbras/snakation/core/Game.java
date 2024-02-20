@@ -21,8 +21,13 @@ public class Game {
     public void start()
     {
         map.initTiles();
+
         this.spawnSnake();
-        map.updateTilesWithSnake(this.snake);
+        this.map.updateTilesWithSnake(this.snake);
+
+        this.spawnPoint();
+        this.map.updateTilesWithPoint(this.point);
+
         this.displayMap();
         while (true)
         {
@@ -62,14 +67,14 @@ public class Game {
     private void spawnPoint()
     {
         int[] snake_pos = this.snake.getPosition();
-        int v = snake_pos[0];
-        int h = snake_pos[1];
-        while(v == snake_pos[0] || h == snake_pos[1])
+        int v, h;
+        do
         {
             v = random.nextInt(this.map.getSize_v());
             h = random.nextInt(this.map.getSize_h());
         }
-        setPointPosition(new int[]{v, h});
+        while (v == snake_pos[0] || h == snake_pos[1]);
+        this.setPointPosition(new int[]{v, h});
     }
 
     private void setSnakePosition(int[] position)

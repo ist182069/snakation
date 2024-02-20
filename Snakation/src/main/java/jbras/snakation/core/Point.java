@@ -10,7 +10,7 @@ public class Point {
         this.value = value;
     }
 
-    public int getPosition() {
+    public int[] getPosition() {
         return position;
     }
 

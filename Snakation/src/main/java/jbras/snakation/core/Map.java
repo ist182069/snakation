@@ -50,4 +50,12 @@ public class Map {
         int pos_h = snake_pos[1];
         layout[pos_v][pos_h] = 'O';
     }
+
+    public void updateTilesWithPoint(Point point)
+    {
+        int[] point_pos = point.getPosition();
+        int pos_v = point_pos[0];
+        int pos_h = point_pos[1];
+        layout[pos_v][pos_h] = '#';
+    }
 }
