@@ -4,10 +4,14 @@ import java.util.Arrays;
 
 public class Map {
 
+    int size_h;
+    int size_v;
     final char[][] layout;
     public Map(int size_h, int size_v)
     {
-        this.layout = new char[size_h][size_v];
+        this.size_h = size_h;
+        this.size_v = size_v;
+        this.layout = new char[this.size_h][this.size_v];
     }
 
     public void initTiles()
@@ -28,4 +32,14 @@ public class Map {
         this.layout = layout;
     }
      */
+
+    public int getSize_h()
+    {
+        return this.size_h;
+    }
+
+    public int getSize_v()
+    {
+        return this.size_v;
+    }
 }
