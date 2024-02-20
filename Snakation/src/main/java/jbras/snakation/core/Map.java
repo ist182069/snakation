@@ -43,26 +43,10 @@ public class Map {
         return this.size_v;
     }
 
-    public void clearTile(int[] pos)
+    public void updateTile(int[] pos, char tile)
     {
         int pos_v = pos[0];
         int pos_h = pos[1];
-        layout[pos_v][pos_h] = ' ';
-    }
-
-    public void updateTilesWithSnake(Snake snake)
-    {
-        int[] snake_pos = snake.getHeadPosition();
-        int pos_v = snake_pos[0];
-        int pos_h = snake_pos[1];
-        layout[pos_v][pos_h] = 'O';
-    }
-
-    public void updateTilesWithPoint(Point point)
-    {
-        int[] point_pos = point.getPosition();
-        int pos_v = point_pos[0];
-        int pos_h = point_pos[1];
-        layout[pos_v][pos_h] = '#';
+        layout[pos_v][pos_h] = tile;
     }
 }

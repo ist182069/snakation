@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Game {
 
-    Point point = new Point(1);
-    Random random = new Random();
-    Scanner input = new Scanner(System.in);
+    private Point point = new Point(1);
+    private Random random = new Random();
+    private Scanner input = new Scanner(System.in);
     private int score = 0;
     private Snake snake;
     private Map map;
@@ -23,23 +23,40 @@ public class Game {
         map.initTiles();
 
         this.spawnSnake();
-        this.map.updateTilesWithSnake(this.snake);
 
-        this.spawnPoint();
-        this.map.updateTilesWithPoint(this.point);
+        int[] spawnSnakeTile = this.snake.getHeadPosition();
+        this.map.updateTile(spawnSnakeTile, 'O');
+
+        this.spawnPoint(spawnSnakeTile);
+        this.map.updateTile(this.point.getPosition(), '#');
 
         this.displayMap();
         while (true)
         {
+            System.out.println("Your current score: " + score);
             int[] move = this.inputMove();
-            int[] snakeTile = this.snake.getHeadPosition();
 
-            this.map.clearTile(snakeTile);
-            calculateNextPosition(move, snakeTile);
-            this.map.updateTilesWithSnake(this.snake);
+            int[] currSnakeTile = this.snake.getHeadPosition();
+            this.map.updateTile(currSnakeTile, ' ');
 
+            calculateNextPosition(move, currSnakeTile);
+
+            int[] newSnakeTile = this.snake.getHeadPosition();
+            this.map.updateTile(newSnakeTile, 'O');
+
+            if (this.pointEaten(newSnakeTile, this.point.getPosition()))
+            {
+                this.spawnPoint(newSnakeTile);
+                this.map.updateTile(this.point.getPosition(), '#');
+                score++;
+            }
             displayMap();
         }
+    }
+
+    private boolean pointEaten(int[] snake_pos, int[] point_pos)
+    {
+        return snake_pos[0] == point_pos[0] && snake_pos[1] == point_pos[1];
     }
 
     private void calculateNextPosition(int[] move, int[] snakeTile)
@@ -67,9 +84,8 @@ public class Game {
         setSnakePosition(new int[]{v, h});
     }
 
-    private void spawnPoint()
+    private void spawnPoint(int[] snake_pos)
     {
-        int[] snake_pos = this.snake.getHeadPosition();
         int v, h;
         do
         {
@@ -99,15 +115,15 @@ public class Game {
         switch (move)
         {
             case "w":
-                directions = new int[]{1, 0};
-                break;
-            case "a":
                 directions = new int[]{-1, 0};
+                break;
+            case "s":
+                directions = new int[]{1, 0};
                 break;
             case "d":
                 directions = new int[]{0, 1};
                 break;
-            case "s":
+            case "a":
                 directions = new int[]{0, -1};
                 break;
             default:
