@@ -3,7 +3,7 @@ package jbras.snakation.core;
 public class Point {
 
     int value;
-    int position;
+    int[] position;
 
     public Point(int value)
     {
@@ -14,7 +14,7 @@ public class Point {
         return position;
     }
 
-    public void setPosition(int position) {
+    public void setPosition(int[] position) {
         this.position = position;
     }
 }

@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Game {
 
+    Point point = new Point(1);
     Random random = new Random();
     Scanner input = new Scanner(System.in);
     private int score = 0;
@@ -19,20 +20,25 @@ public class Game {
 
     public void start()
     {
-        this.map.initTiles();
-        this.spawn();
+        map.initTiles();
+        this.spawnSnake();
+        map.updateTilesWithSnake(this.snake);
         this.displayMap();
-
         while (true)
         {
-           int[] move = this.inputMove();
-           int[] snakeTile = this.snake.getPosition();
-           int move_v = move[0] + snakeTile[0];
-           int move_h = move[1] + snakeTile[1];
-           this.setSnakePosition(new int[]{move_v, move_h});
-           //this.map.updateTile();
-           this.displayMap();
+            int[] move = this.inputMove();
+            calculateNextPosition(move);
+            this.map.updateTilesWithSnake(this.snake);
+            displayMap();
         }
+    }
+
+    private void calculateNextPosition(int[] move)
+    {
+        int[] snakeTile = this.snake.getPosition();
+        int move_v = move[0] + snakeTile[0];
+        int move_h = move[1] + snakeTile[1];
+        setSnakePosition(new int[]{move_v, move_h});
     }
 
     private void displayMap()
@@ -46,16 +52,34 @@ public class Game {
         }
     }
 
-    private void spawn()
+    private void spawnSnake()
     {
         int v = random.nextInt(this.map.getSize_v());
         int h = random.nextInt(this.map.getSize_h());
-        this.setSnakePosition(new int[]{v, h});
+        setSnakePosition(new int[]{v, h});
+    }
+
+    private void spawnPoint()
+    {
+        int[] snake_pos = this.snake.getPosition();
+        int v = snake_pos[0];
+        int h = snake_pos[1];
+        while(v == snake_pos[0] || h == snake_pos[1])
+        {
+            v = random.nextInt(this.map.getSize_v());
+            h = random.nextInt(this.map.getSize_h());
+        }
+        setPointPosition(new int[]{v, h});
     }
 
     private void setSnakePosition(int[] position)
     {
-        this.snake.setPosition(position);
+        snake.setPosition(position);
+    }
+
+    private void setPointPosition(int[] position)
+    {
+        point.setPosition(position);
     }
 
     private int[] inputMove()

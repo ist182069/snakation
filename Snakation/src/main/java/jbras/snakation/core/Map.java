@@ -17,7 +17,7 @@ public class Map {
     public void initTiles()
     {
         for (char[] chars : layout) {
-            Arrays.fill(chars, '0');
+            Arrays.fill(chars, ' ');
         }
     }
 
@@ -41,5 +41,13 @@ public class Map {
     public int getSize_v()
     {
         return this.size_v;
+    }
+
+    public void updateTilesWithSnake(Snake snake)
+    {
+        int[] snake_pos = snake.getPosition();
+        int pos_v = snake_pos[0];
+        int pos_h = snake_pos[1];
+        layout[pos_v][pos_h] = 'O';
     }
 }
