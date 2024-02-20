@@ -14,5 +14,19 @@ public class Game {
     public void start()
     {
         this.map.initTiles();
+        this.displayMap();
+    }
+
+    private void displayMap()
+    {
+        char[][] layout = this.map.getLayout();
+        for (int i = 0; i < layout.length; i++)
+        {
+            for (int j = 0; j < layout[i].length; j++)
+            {
+                System.out.print(layout[i][j] + "\t");
+            }
+            System.out.println("");
+        }
     }
 }

@@ -11,7 +11,7 @@ public class Main {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         System.out.println("Welcome to Snakation!");
-        new Game(new Snake(5), new Map(50, 50)).start();
+        new Game(new Snake(5), new Map(8, 8)).start();
         System.out.println("Thank you for playing!");
     }
 }
