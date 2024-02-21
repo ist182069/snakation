@@ -34,7 +34,7 @@ public class Game {
         this.map.updateTile(this.point.getPosition(), '#');
 
         this.displayMap();
-        while (true)
+        while (this.snake.isAlive())
         {
             System.out.println(this.player.getId() + "'s current score: " + score);
             int[] move = this.inputMove();
@@ -129,6 +129,9 @@ public class Game {
                 break;
             case "a":
                 directions = new int[]{0, -1};
+                break;
+            case "ded":
+                this.snake.setAlive(false);
                 break;
             default:
                 System.exit(-1);

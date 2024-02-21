@@ -17,7 +17,7 @@ public class Main {
         System.out.print("Insert player name: ");
         Scanner input = new Scanner(System.in);
         String playerName = input.nextLine();
-        new Game(new Snake(5), new Map(8, 8), new Player(playerName, 0), input).start();
+        new Game(new Snake(5, true), new Map(8, 8), new Player(playerName, 0), input).start();
         System.out.println("Thank you for playing!");
     }
 }
