@@ -7,23 +7,26 @@ public class Game {
 
     private Point point = new Point(1);
     private Random random = new Random();
-    private Scanner input = new Scanner(System.in);
+    private Scanner input;
     private int score = 0;
     private Snake snake;
     private Map map;
+    private Player player;
 
-    public Game(Snake snake, Map map)
+    public Game(Snake snake, Map map, Player player, Scanner input)
     {
         this.snake = snake;
         this.map = map;
+        this.player = player;
+        this.input = input;
     }
 
     public void start()
     {
+
         map.initTiles();
 
         this.spawnSnake();
-
         int[] spawnSnakeTile = this.snake.getHeadPosition();
         this.map.updateTile(spawnSnakeTile, 'O');
 
@@ -33,7 +36,7 @@ public class Game {
         this.displayMap();
         while (true)
         {
-            System.out.println("Your current score: " + score);
+            System.out.println(this.player.getId() + "'s current score: " + score);
             int[] move = this.inputMove();
 
             int[] currSnakeTile = this.snake.getHeadPosition();
@@ -49,6 +52,7 @@ public class Game {
                 this.spawnPoint(newSnakeTile);
                 this.map.updateTile(this.point.getPosition(), '#');
                 score++;
+                this.player.setLatest_score(score);
             }
             displayMap();
         }
