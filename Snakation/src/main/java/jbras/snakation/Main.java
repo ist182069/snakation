@@ -1,9 +1,9 @@
 package jbras.snakation;
 
 import jbras.snakation.core.Game;
-import jbras.snakation.core.Snake;
 import jbras.snakation.core.Map;
 import jbras.snakation.core.Player;
+import jbras.snakation.core.snake.BasicSnake;
 
 import java.util.Scanner;
 
@@ -17,7 +17,7 @@ public class Main {
         System.out.print("Insert player name: ");
         Scanner input = new Scanner(System.in);
         String playerName = input.nextLine();
-        new Game(new Snake(5, true), new Map(8, 8), new Player(playerName, 0), input).start();
+        new Game(new BasicSnake(5, true), new Map(8, 8), new Player(playerName, 0), input).start();
         System.out.println("Thank you for playing!");
     }
 }

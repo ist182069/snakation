@@ -1,16 +1,9 @@
-package jbras.snakation.core;
+package jbras.snakation.core.snake;
 
-public class Snake {
-
+public abstract class Snake {
     int[] head_position;
     int size;
     boolean alive;
-
-    public Snake(int size, boolean alive)
-    {
-        this.size = size;
-        this.alive = alive;
-    }
 
     public int[] getHeadPosition()
     {
@@ -28,5 +21,10 @@ public class Snake {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public void cry()
+    {
+        System.out.println("Mhhhhhmmmmmhmmmmm");
     }
 }

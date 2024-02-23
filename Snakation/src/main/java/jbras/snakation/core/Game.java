@@ -1,5 +1,7 @@
 package jbras.snakation.core;
 
+import jbras.snakation.core.snake.Snake;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -56,6 +58,7 @@ public class Game {
             }
             displayMap();
         }
+
     }
 
     private boolean pointEaten(int[] snake_pos, int[] point_pos)
