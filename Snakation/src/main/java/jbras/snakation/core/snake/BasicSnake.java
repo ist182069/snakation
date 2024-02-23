@@ -7,7 +7,6 @@ public class BasicSnake extends Snake {
         this.alive = alive;
     }
 
-    @Override
     public void cry() {
         System.out.println("Basic cry!");
     }

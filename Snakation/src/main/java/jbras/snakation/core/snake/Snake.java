@@ -23,8 +23,5 @@ public abstract class Snake {
         this.alive = alive;
     }
 
-    public void cry()
-    {
-        System.out.println("Mhhhhhmmmmmhmmmmm");
-    }
+    public abstract void cry();
 }
